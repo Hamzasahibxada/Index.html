@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Code By Hamza Sahibzada</title>
+    <meta charset="UTF-8">
+    <title>Timer Example</title>
+    <style>
+     
+      .timer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-radius: 5px;
+      }
+
+      .timer-display {
+        font-size: 60px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .timer-minutes,
+      .timer-seconds {
+        padding: 0 10px;
+      }
+
+      .timer-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .timer-button {
+        font-size: 18px;
+        font-weight: bold;
+        color: #fff;
+        border: none;
+        background-color: #333;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 0 10px;
+      }
+
+      .timer-button:hover {
+        background-color: #444;
+      }
+
+      .timer-button.start {
+        background-color: #4CAF50;
+      }
+
+      .timer-button.stop {
+        background-color: #f44336;
+      }
+
+      .timer-button.reset {
+        background-color: #2196F3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="timer">
+      <div class="timer-display">
+        <span class="timer-minutes">00</span>:<span class="timer-seconds">00</span>
+      </div>
+      <div class="timer-buttons">
+        <button class="timer-button start" onclick="startTimer()">Start</button>
+        <button class="timer-button stop" onclick="stopTimer()">Stop</button>
+        <button class="timer-button reset" onclick="resetTimer()">Reset</button>
+      </div>
+    </div>
+    <script>
+      let timerInterval;
+let seconds = 0;
+let minutes = 0;
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    seconds++;
+    if (seconds === 60) {
+      seconds = 0;
+      minutes++;
+    }
+    document.querySelector('.timer-seconds').innerHTML = formatTime(seconds);
+    document.querySelector('.timer-minutes').innerHTML = formatTime(minutes);
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  seconds = 0;
+  minutes = 0;
+  document.querySelector('.timer-seconds').innerHTML = '00';
+  document.querySelector('.timer-minutes').innerHTML = '00';
+}
+
+function formatTime(time) {
+  return time < 10 ? `0${time}` : time;
+}
+
+    </script>
+  </body>
+</html>
